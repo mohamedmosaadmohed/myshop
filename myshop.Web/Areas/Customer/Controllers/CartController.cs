@@ -58,5 +58,19 @@ namespace myshop.Web.Areas.Customer.Controllers
 			_unitOfWork.Complete();
 			return RedirectToAction("Index");
 		}
+		public IActionResult Summary()
+		{
+			//var claimsIdentity = (ClaimsIdentity)User.Identity;
+			//var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+			//shoppingCartVM = new ShoppingCartVM()
+			//{
+			//	shoppingCarts = _unitOfWork.ShoppingCart.GetAll(x => x.ApplicationUserId == claim.Value, IncludeWord: "Product")
+			//};
+			//foreach (var item in shoppingCartVM.shoppingCarts)
+			//{
+			//	shoppingCartVM.totalCarts += (item.Count * item.Product.Price);
+			//}
+			return View();
+		}
 	}
 }
