@@ -1,0 +1,40 @@
+﻿@model ProductVM
+@{
+    ViewBag.pageTitle = "Product Management";
+    ViewBag.CardTitle = "Create Product";
+}
+
+<form method="post" asp-action="Create" enctype="multipart/form-data">
+    <div class="mb-2">
+        <label>Name</label>
+        <input class="form-control" type="text" asp-for="Product.Name">
+        <span asp-validation-for="Product.Name" class="text-danger"></span>
+    </div>
+    <div class="mb-2">
+        <label>Description</label>
+        <input class="form-control" type="text" asp-for="Product.Description" />
+        <span asp-validation-for="Product.Description" class="text-danger"></span>
+    </div>
+    <div class="mb-2">
+        <label>Price</label>
+        <input class="form-control" type="number" asp-for="Product.Price" />
+        <span asp-validation-for="Product.Price" class="text-danger"></span>
+    </div>
+    <div class="mb-2">
+        <label>Image</label>
+        <input class="form-control" type="file" name="file" id="imagefile" />
+    </div>
+    <div class="mb-2">
+        <label>Category</label>
+        <select asp-for="Product.CatagoryId" asp-items="Model.CatagoryList" class="form-control">
+            <option disabled selected>--- Select Category ---</option>
+        </select>
+    </div>
+    <div class="mb-2">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

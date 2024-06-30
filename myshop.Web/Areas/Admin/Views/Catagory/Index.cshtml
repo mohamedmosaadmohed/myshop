@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Catagory>
+@{
+    ViewBag.pageTitle = "Catagory Management";
+    ViewBag.CardTitle = "View Catagory";
+}
+<div class="mb-2">
+    <a asp-controller="Catagory" asp-action="Create" class="btn btn-primary">New Catagory</a>
+</div>
+<table class="table table-hover" width="100">
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>Description</td>
+            <td>CreateDate</td>
+            <td>Update</td>
+            <td>Delete</td>
+        </tr>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Description</td>
+                <td>@item.CreateDate</td>
+                <td><a href="/Admin/Catagory/Update/@item.Id" class="btn btn-success">Update</a></td>
+                <td><a href="/Admin/Catagory/Delete/@item.Id" class="btn btn-danger">Delete</a></td>
+            </tr>
+        }
+    </thead>
+</table>

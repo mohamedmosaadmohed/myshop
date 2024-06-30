@@ -1,0 +1,26 @@
+﻿@model Catagory
+@{
+    ViewBag.pageTitle = "Catagory Management";
+    ViewBag.CardTitle = "Update Catagory";
+}
+<form method="post" asp-action="Update">
+    <input hidden asp-for="Id" />
+    <div class="mb-3">
+        <label>Name</label>
+        <input class="form-control" type="text" asp-for="Name">
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label>Description</label>
+        <input class="form-control" type="text" asp-for="Description" />
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <button type="submit" class="btn btn-success">Update</button>
+        <button asp-controller="Catagory" asp-action="Index" class="btn btn-warning">Back</button>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,21 @@
+﻿@model Catagory
+@{
+    ViewBag.pageTitle = "Catagory Management";
+    ViewBag.CardTitle = "Delete Catagory";
+}
+
+<form method="post" asp-action="DeleteCatagory">
+    <input hidden asp-for="Id" />
+    <div class="mb-3">
+        <label>Name</label>
+        <input class="form-control" disabled type="text" asp-for="Name">
+    </div>
+    <div class="mb-3">
+        <label>Description</label>
+        <input class="form-control" type="text" disabled asp-for="Description" />
+    </div>
+    <div class="mb-3">
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <button asp-controller="Catagory" asp-action="Index" class="btn btn-warning">Back</button>
+    </div>
+</form>
