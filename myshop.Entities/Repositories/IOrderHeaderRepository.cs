@@ -10,6 +10,6 @@ namespace myshop.Entities.Repositories
     public interface IOrderHeaderRepository : IGenericRepository<OrderHeader>
     {
         void Update(OrderHeader orderHeader);
-        void UpdateOrderStatus(int id,string status);
+        void UpdateOrderStatus(int id,string orderStatus,string paymentStatus);
     }
 }

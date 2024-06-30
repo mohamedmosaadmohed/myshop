@@ -19,10 +19,16 @@ namespace myshop.DataAccess.Implementation
 
 		public void Update(OrderHeader orderHeader)
 		{
+			_context.TbOrderHeaders.Update(orderHeader);
 		}
-		public void UpdateOrderStatus(int id, string status)
+		public void UpdateOrderStatus(int id, string orderStatus, string paymentStatus)
 		{
-
+			var orderFromDb = _context.TbOrderHeaders.FirstOrDefault(X => X.Id == id);
+			if (orderFromDb != null) 
+			{
+				orderFromDb.orderStatus = orderStatus;
+				if (paymentStatus != null) { orderFromDb.paymentStatus = paymentStatus; }
+			}
 		}
 	}
 }
