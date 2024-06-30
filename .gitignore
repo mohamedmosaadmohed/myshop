@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/LocationManagement/wwwroot/lib/bootstrap/dist/js
+/LocationManagement/wwwroot/lib/bootstrap
+/LocationManagement/wwwroot/lib/jquery/dist

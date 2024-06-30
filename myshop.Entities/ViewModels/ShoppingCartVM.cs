@@ -10,6 +10,7 @@ namespace myshop.Entities.ViewModels
     public class ShoppingCartVM
     {
         public IEnumerable<ShoppingCart> shoppingCarts { get; set; }
+        public OrderHeader OrderHeader { get; set; }
         public decimal totalCarts { get; set; }
     }
 }
