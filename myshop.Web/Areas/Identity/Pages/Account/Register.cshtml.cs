@@ -58,12 +58,12 @@ namespace myshop.Web.Areas.Identity.Pages.Account
         {
             [Required]
             [MaxLength(450)]
-            public string Name { get; set; }
+            public string FirstName { get; set; }     
+
+            [Required]
             [MaxLength(450)]
-            public string Address { get; set; }
-            [MaxLength(450)]
-            public string City { get; set; }
-            public string ZipCode { get; set; }
+            public string LastName { get; set; }
+
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
@@ -106,10 +106,8 @@ namespace myshop.Web.Areas.Identity.Pages.Account
                 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
-                user.Name = Input.Name;
-                user.Address = Input.Address;
-                user.City = Input.City;
-                user.ZipCode = Input.ZipCode;
+                user.FirstName = Input.FirstName;
+                user.LastName = Input.LastName;
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)

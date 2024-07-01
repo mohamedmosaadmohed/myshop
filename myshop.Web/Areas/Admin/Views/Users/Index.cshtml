@@ -21,11 +21,10 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>@item.Name</td>
+                <td>{@item.FirstName @item.LastName}</td>
                 <td>@item.Email</td>
                 <td>@item.Address</td>
                 <td>@item.City</td>
-                <td>@item.ZipCode</td>
                 <td>
                     @if(item.LockoutEnd == null | item.LockoutEnd < DateTime.Now)
                     {

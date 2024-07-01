@@ -16,5 +16,10 @@ namespace myshop.Entities.Models
         [Required]
         [MaxLength(450)]
         public string LastName { get; set; }
+        [MaxLength(450)]
+        public string Address { get; set; }
+        [MaxLength(450)]
+        public string Region { get; set; }
+        public string City { get; set; }
     }
 }

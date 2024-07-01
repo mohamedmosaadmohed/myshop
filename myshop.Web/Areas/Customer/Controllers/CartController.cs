@@ -71,12 +71,9 @@ namespace myshop.Web.Areas.Customer.Controllers
 				OrderHeader = new()
 			};
 			shoppingCartVM.OrderHeader.applicationUser = _unitOfWork.ApplicationUser.GetFirstorDefault(X => X.Id == claim.Value);
-			shoppingCartVM.OrderHeader.name = shoppingCartVM.OrderHeader.applicationUser.Name;
-			shoppingCartVM.OrderHeader.email = shoppingCartVM.OrderHeader.applicationUser.Email;
-			shoppingCartVM.OrderHeader.address = shoppingCartVM.OrderHeader.applicationUser.Address;
-			shoppingCartVM.OrderHeader.city = shoppingCartVM.OrderHeader.applicationUser.City;
-			shoppingCartVM.OrderHeader.phone = shoppingCartVM.OrderHeader.applicationUser.PhoneNumber;
-			shoppingCartVM.OrderHeader.zipCode = shoppingCartVM.OrderHeader.applicationUser.ZipCode;
+			shoppingCartVM.OrderHeader.FirstName = shoppingCartVM.OrderHeader.applicationUser.FirstName;
+			shoppingCartVM.OrderHeader.LastName = shoppingCartVM.OrderHeader.applicationUser.LastName;
+			shoppingCartVM.OrderHeader.Email = shoppingCartVM.OrderHeader.applicationUser.Email;
 
 			foreach (var item in shoppingCartVM.shoppingCarts)
 			{

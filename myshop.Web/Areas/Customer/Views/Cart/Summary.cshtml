@@ -43,59 +43,48 @@
                     <form class="needs-validation" novalidate>
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label for="firstName">Name</label>
-                                <input type="text" disabled class="form-control" id="name" asp-for="@Model.OrderHeader.name">
+                                <label for="firstName">First Name</label>
+                                <input type="text" disabled class="form-control" id="firstname" asp-for="@Model.OrderHeader.FirstName">
+                            </div>             
+                            <div class="col-md-6 mb-3">
+                                <label for="firstName">Last Name</label>
+                                <input type="text" disabled class="form-control" id="lastname" asp-for="@Model.OrderHeader.LastName">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="firstName">Phone Number</label>
+                                <input type="tel" disabled class="form-control" id="phonenumber" asp-for="@Model.OrderHeader.PhoneNumber">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="firstName">Additional PhoneNumber</label>
+                                <input type="tel" disabled class="form-control" id="phonenumber" asp-for="@Model.OrderHeader.AdditionalPhoneNumber">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="address">Address</label>
+                                <input type="text" class="form-control" id="address" asp-for="@Model.OrderHeader.Address">
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="email">Email <span class="text-muted"></span></label>
-                                <input type="email" disabled class="form-control" id="email" asp-for="@Model.OrderHeader.email">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="mb-3">
-                                <label for="address">Address</label>
-                                <input type="text" class="form-control" id="address" asp-for="@Model.OrderHeader.address">
-                                <div class="invalid-feedback">
-                                    Please enter your shipping address.
-                                </div>
+                                <input type="email" disabled class="form-control" id="email" asp-for="@Model.OrderHeader.Email">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label for="phone">PhoneNumber</label>
-                                <input type="tel" class="form-control" id="phone" asp-for="@Model.OrderHeader.phone">
-                                <div class="invalid-feedback">
-                                    Please enter your Phone Number.
-                                </div>
+                                <label for="address">Additional Information (Notes)</label>
+                                <input type="text" class="form-control" id="additionalinformation" asp-for="@Model.OrderHeader.AdditionalInformation">
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="country">Country</label>
-                                <select class="custom-select d-block w-100 form-control" asp-for="@Model.OrderHeader.city">
-                                    <option value="">Choose...</option>
-                                    <option>United States</option>
-                                </select>
-                                <div class="invalid-feedback">
-                                    Please select a valid country.
-                                </div>
+                                <label for="email">Region <span class="text-muted"></span></label>
+                                <input type="email" disabled class="form-control" id="region" asp-for="@Model.OrderHeader.Region">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label for="state">State</label>
-                                <select class="custom-select d-block w-100 form-control" id="state" required>
-                                    <option value="">Choose...</option>
-                                    <option>California</option>
-                                </select>
-                                <div class="invalid-feedback">
-                                    Please provide a valid state.
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="zip">Zip</label>
-                                <input type="text" class="form-control" disabled id="zip" placeholder="" asp-for="@Model.OrderHeader.zipCode">
-                                <div class="invalid-feedback">
-                                    Zip code required.
-                                </div>
+                                <label for="phone">City</label>
+                                <input type="text" class="form-control" id="city" asp-for="@Model.OrderHeader.City">
                             </div>
                         </div>
                         <hr class="mb-4">
