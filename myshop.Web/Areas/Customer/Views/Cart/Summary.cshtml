@@ -131,6 +131,18 @@
                                 option.value = city.namePrimaryLang;
                                 option.textContent = city.namePrimaryLang;
                                 citySelect.appendChild(option);
+
+                                // Check areaDataModels for additional cities
+                                if (city.areaDataModels) {
+                                    city.areaDataModels.forEach(function (area) {
+                                        if (area.namePrimaryLang !== city.namePrimaryLang) {
+                                            const areaOption = document.createElement("option");
+                                            areaOption.value = area.namePrimaryLang;
+                                            areaOption.textContent = area.namePrimaryLang;
+                                            citySelect.appendChild(areaOption);
+                                        }
+                                    });
+                                }
                             });
                         }
                     });
