@@ -12,11 +12,9 @@ namespace myshop.Entities.Models
     {
         [Required]
         [MaxLength(450)]
-        public string Name { get; set; }
+        public string FirstName { get; set; }
+        [Required]
         [MaxLength(450)]
-        public string Address { get; set; }
-        [MaxLength(450)]
-        public string City { get; set; }
-        public string ZipCode { get; set; }
+        public string LastName { get; set; }
     }
 }

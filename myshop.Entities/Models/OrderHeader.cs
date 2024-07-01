@@ -29,12 +29,15 @@ namespace myshop.Entities.Models
 		public string? paymentIntentId { get; set; }
 
 		// Data For User
-		public string name { get; set; }
-		public string email { get; set; }
-		public string address { get; set; }
-		public string city { get; set; }
-		public string phone { get; set; }
-		public string zipCode { get; set; }
+		public string FirstName { get; set; }
+		public string LastName { get; set; }
+		public string Email { get; set; }
+		public string Address { get; set; }
+		public string? AdditionalInformation { get; set; }
+		public string Region { get; set; }
+		public string City { get; set; }
+		public string PhoneNumber { get; set; }
+		public string? AdditionalPhoneNumber { get; set; }
 
 	}
 }
