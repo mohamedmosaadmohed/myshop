@@ -89,35 +89,36 @@ namespace myshop.Web.Areas.Customer.Controllers
 			var claimsIdentity = (ClaimsIdentity)User.Identity;
 			var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
 
-			shoppingCartVM.shoppingCarts = _unitOfWork.ShoppingCart.GetAll(x => x.ApplicationUserId == claim.Value, IncludeWord: "Product");
+            shoppingCartvm.shoppingCarts = _unitOfWork.ShoppingCart
+				.GetAll(x => x.ApplicationUserId == claim.Value, IncludeWord: "Product");
 
-			shoppingCartVM.OrderHeader.orderStatus = SD.Pending;
-			//shoppingCartVM.OrderHeader.paymentStatus = SD.Pending;
-			shoppingCartVM.OrderHeader.orderDate = DateTime.Now;
-			shoppingCartVM.OrderHeader.ApplicationUserId = claim.Value;
+            shoppingCartvm.OrderHeader.orderStatus = SD.Pending;
+            shoppingCartvm.OrderHeader.paymentStatus = SD.Pending;
+            shoppingCartvm.OrderHeader.orderDate = DateTime.Now;
+            shoppingCartvm.OrderHeader.ApplicationUserId = claim.Value;
 
 
-			foreach (var item in shoppingCartVM.shoppingCarts)
+			foreach (var item in shoppingCartvm.shoppingCarts)
 			{
-				shoppingCartVM.totalCarts += (item.Count * item.Product.Price);
+                shoppingCartvm.totalCarts += (item.Count * item.Product.Price);
 			}
 
-			_unitOfWork.OrderHeader.Add(shoppingCartVM.OrderHeader);
+			_unitOfWork.OrderHeader.Add(shoppingCartvm.OrderHeader);
 			_unitOfWork.Complete();
 
-			foreach(var item in shoppingCartVM.shoppingCarts)
+			foreach(var item in shoppingCartvm.shoppingCarts)
 			{
 				OrderDetails orderDetails = new OrderDetails()
 				{
 					productId = item.ProductId,
-					orderId = shoppingCartVM.OrderHeader.Id,
+                    OrderHeaderId = shoppingCartvm.OrderHeader.Id,
 					price = item.Product.Price,
 					Count =item.Count,
 				};
 				_unitOfWork.OrderDetails.Add(orderDetails);
 				_unitOfWork.Complete();
 			}
-			return View();
+			return RedirectToAction("Index", "Home");
 		}
 	}
 }

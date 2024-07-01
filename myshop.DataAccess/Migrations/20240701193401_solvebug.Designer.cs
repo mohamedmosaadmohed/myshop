@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using myshop.DataAccess.Data;
 
@@ -11,9 +12,11 @@ using myshop.DataAccess.Data;
 namespace myshop.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240701193401_solvebug")]
+    partial class solvebug
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -266,7 +269,10 @@ namespace myshop.DataAccess.Migrations
                     b.Property<int>("Count")
                         .HasColumnType("int");
 
-                    b.Property<int>("OrderHeaderId")
+                    b.Property<int>("orderHeaderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("orderId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("price")
@@ -277,7 +283,7 @@ namespace myshop.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OrderHeaderId");
+                    b.HasIndex("orderHeaderId");
 
                     b.HasIndex("productId");
 
@@ -523,7 +529,7 @@ namespace myshop.DataAccess.Migrations
                 {
                     b.HasOne("myshop.Entities.Models.OrderHeader", "orderHeader")
                         .WithMany()
-                        .HasForeignKey("OrderHeaderId")
+                        .HasForeignKey("orderHeaderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

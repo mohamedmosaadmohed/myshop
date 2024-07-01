@@ -12,9 +12,9 @@ namespace myshop.Entities.Models
 	{
         [Key]
         public int Id { get; set; }
-        public int orderId { get; set; }
-        public OrderHeader orderHeader { get; set; }
+        public int OrderHeaderId { get; set; }
         [ValidateNever]
+        public OrderHeader orderHeader { get; set; }
         public int productId { get; set; }
 		[ValidateNever]
 		public Product product { get; set; }

@@ -40,7 +40,7 @@
                 </div>
                 <div class="col-md-8 order-md-1">
                     <h4 class="mb-3">Billing address</h4>
-                    <form class="needs-validation" novalidate>
+                    <form class="needs-validation" method="post">
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="firstName">First Name</label>
@@ -55,6 +55,7 @@
                             <div class="col-md-6 mb-3">
                                 <label for="firstName">Phone Number</label>
                                 <input type="tel" class="form-control" id="phonenumber" asp-for="@Model.OrderHeader.PhoneNumber">
+                                <span asp-validation-for="@Model.OrderHeader.PhoneNumber" class="text-danger"></span>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="firstName">Additional PhoneNumber</label>
@@ -65,10 +66,12 @@
                             <div class="col-md-6 mb-3">
                                 <label for="address">Address</label>
                                 <input type="text" class="form-control" id="address" asp-for="@Model.OrderHeader.Address">
+                                <span asp-validation-for="@Model.OrderHeader.Address" class="text-danger"></span>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="email">Email <span class="text-muted"></span></label>
                                 <input type="email" class="form-control" id="email" asp-for="@Model.OrderHeader.Email">
+                                <span asp-validation-for="@Model.OrderHeader.Email" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="row">
@@ -92,7 +95,7 @@
                             </div>
                         </div>
                         <hr class="mb-4">
-                        <button class="btn btn-primary btn-lg btn-block mb-4" type="submit">Save</button>
+                        <button class="btn btn-primary btn-lg btn-block mb-4" type="submit">Place Order</button>
                     </form>
                 </div>
             </div>
