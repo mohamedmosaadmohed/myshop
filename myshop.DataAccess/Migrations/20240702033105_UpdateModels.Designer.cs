@@ -12,8 +12,8 @@ using myshop.DataAccess.Data;
 namespace myshop.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240627075953_cart")]
-    partial class cart
+    [Migration("20240702033105_UpdateModels")]
+    partial class UpdateModels
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -258,6 +258,118 @@ namespace myshop.DataAccess.Migrations
                     b.ToTable("TbCatagory");
                 });
 
+            modelBuilder.Entity("myshop.Entities.Models.OrderDetails", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrderHeaderId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("productId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderHeaderId");
+
+                    b.HasIndex("productId");
+
+                    b.ToTable("TbOrderDetails");
+                });
+
+            modelBuilder.Entity("myshop.Entities.Models.OrderHeader", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AdditionalInformation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AdditionalPhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ApplicationUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Carrier")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Region")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TrackingNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("orderDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("orderStatus")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("paymentDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("paymentIntentId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("paymentStatus")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("sessionId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("shippingDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("totalPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.ToTable("TbOrderHeaders");
+                });
+
             modelBuilder.Entity("myshop.Entities.Models.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -289,25 +401,25 @@ namespace myshop.DataAccess.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int?>("ShoppingCartId")
+                    b.Property<int?>("ShoppingCartshoppingId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CatagoryId");
 
-                    b.HasIndex("ShoppingCartId");
+                    b.HasIndex("ShoppingCartshoppingId");
 
                     b.ToTable("TbProduct");
                 });
 
             modelBuilder.Entity("myshop.Entities.Models.ShoppingCart", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("shoppingId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("shoppingId"));
 
                     b.Property<string>("ApplicationUserId")
                         .IsRequired()
@@ -319,7 +431,7 @@ namespace myshop.DataAccess.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("shoppingId");
 
                     b.HasIndex("ApplicationUserId");
 
@@ -332,6 +444,9 @@ namespace myshop.DataAccess.Migrations
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
+                    b.Property<string>("AdditionalPhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Address")
                         .IsRequired()
                         .HasMaxLength(450)
@@ -339,17 +454,22 @@ namespace myshop.DataAccess.Migrations
 
                     b.Property<string>("City")
                         .IsRequired()
-                        .HasMaxLength(450)
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(450)
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ZipCode")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(450)
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(450)
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Region")
+                        .IsRequired()
+                        .HasMaxLength(450)
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasDiscriminator().HasValue("ApplicationUser");
                 });
@@ -405,6 +525,36 @@ namespace myshop.DataAccess.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("myshop.Entities.Models.OrderDetails", b =>
+                {
+                    b.HasOne("myshop.Entities.Models.OrderHeader", "orderHeader")
+                        .WithMany()
+                        .HasForeignKey("OrderHeaderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("myshop.Entities.Models.Product", "product")
+                        .WithMany()
+                        .HasForeignKey("productId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("orderHeader");
+
+                    b.Navigation("product");
+                });
+
+            modelBuilder.Entity("myshop.Entities.Models.OrderHeader", b =>
+                {
+                    b.HasOne("myshop.Entities.Models.ApplicationUser", "applicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("applicationUser");
+                });
+
             modelBuilder.Entity("myshop.Entities.Models.Product", b =>
                 {
                     b.HasOne("myshop.Entities.Models.Catagory", "TbCatagory")
@@ -415,7 +565,7 @@ namespace myshop.DataAccess.Migrations
 
                     b.HasOne("myshop.Entities.Models.ShoppingCart", null)
                         .WithMany("RelatedProducts")
-                        .HasForeignKey("ShoppingCartId");
+                        .HasForeignKey("ShoppingCartshoppingId");
 
                     b.Navigation("TbCatagory");
                 });

@@ -14,7 +14,7 @@ namespace myshop.Entities.Models
         public int Id { get; set; }
         public string ApplicationUserId { get; set; }
         [ValidateNever]
-		public ApplicationUser applicationUser { get; set; } // Forgein Key to User Table (1 --> M)
+		public ApplicationUser applicationUser { get; set; }
         public DateTime orderDate { get; set; }
         public DateTime shippingDate { get; set; }
         public decimal totalPrice { get; set; }

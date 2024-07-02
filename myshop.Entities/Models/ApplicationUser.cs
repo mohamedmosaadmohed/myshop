@@ -21,5 +21,7 @@ namespace myshop.Entities.Models
         [MaxLength(450)]
         public string Region { get; set; }
         public string City { get; set; }
+        [Phone]
+        public string? AdditionalPhoneNumber { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using myshop.DataAccess.Migrations;
+using Microsoft.EntityFrameworkCore;
 using myshop.Entities.Models;
 using myshop.Entities.Repositories;
 using myshop.Entities.ViewModels;
@@ -75,9 +75,16 @@ namespace myshop.Web.Areas.Customer.Controllers
 			shoppingCartVM.OrderHeader.LastName = shoppingCartVM.OrderHeader.applicationUser.LastName;
 			shoppingCartVM.OrderHeader.Email = shoppingCartVM.OrderHeader.applicationUser.Email;
 
-			foreach (var item in shoppingCartVM.shoppingCarts)
+            // Get Saved Past Transaction
+            shoppingCartVM.OrderHeader.PhoneNumber = shoppingCartVM.OrderHeader.applicationUser.PhoneNumber;
+            shoppingCartVM.OrderHeader.AdditionalPhoneNumber = shoppingCartVM.OrderHeader.applicationUser.AdditionalPhoneNumber;
+            shoppingCartVM.OrderHeader.Address = shoppingCartVM.OrderHeader.applicationUser.Address;
+            shoppingCartVM.OrderHeader.Region = shoppingCartVM.OrderHeader.applicationUser.Region;
+            shoppingCartVM.OrderHeader.City = shoppingCartVM.OrderHeader.applicationUser.City;
+
+            foreach (var item in shoppingCartVM.shoppingCarts)
 			{
-				shoppingCartVM.totalCarts += (item.Count * item.Product.Price);
+				shoppingCartVM.OrderHeader.totalPrice += (item.Count * item.Product.Price);
 			}
 			return View(shoppingCartVM);
 		}
@@ -97,10 +104,17 @@ namespace myshop.Web.Areas.Customer.Controllers
             shoppingCartvm.OrderHeader.orderDate = DateTime.Now;
             shoppingCartvm.OrderHeader.ApplicationUserId = claim.Value;
 
+            var applicationUser = _unitOfWork.ApplicationUser.GetFirstorDefault(u => u.Id == claim.Value);
+            // Update the user with the data from shoppingCartvm
+            applicationUser.PhoneNumber = shoppingCartvm.OrderHeader.PhoneNumber;
+            applicationUser.AdditionalPhoneNumber = shoppingCartvm.OrderHeader.AdditionalPhoneNumber;
+            applicationUser.Address = shoppingCartvm.OrderHeader.Address;
+            applicationUser.Region = shoppingCartvm.OrderHeader.Region;
+            applicationUser.City = shoppingCartvm.OrderHeader.City;
 
-			foreach (var item in shoppingCartvm.shoppingCarts)
+            foreach (var item in shoppingCartvm.shoppingCarts)
 			{
-                shoppingCartvm.totalCarts += (item.Count * item.Product.Price);
+                shoppingCartvm.OrderHeader.totalPrice += (item.Count * item.Product.Price);
 			}
 
 			_unitOfWork.OrderHeader.Add(shoppingCartvm.OrderHeader);

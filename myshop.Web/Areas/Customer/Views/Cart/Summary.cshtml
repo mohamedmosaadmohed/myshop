@@ -29,12 +29,12 @@
                                     <h6 class="my-0">@item.Product.Name</h6>
                                     <small class="text-muted">@item.Product.Description</small>
                                 </div>
-                                <span class="text-muted">@item.Product.Price</span>
+                                <span class="text-muted">£ @item.Product.Price</span>
                             </li>
                         }
                         <li class="list-group-item d-flex justify-content-between">
-                            <span>Total (USD)</span>
-                            <strong>@Model.totalCarts</strong>
+                            <span>Total (EGP)</span>
+                            <strong>£ @Model.OrderHeader.totalPrice</strong>
                         </li>
                     </ul>
                 </div>
