@@ -1,0 +1,107 @@
+﻿@model OrderVM
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <h2 class="mb-4">PickUp Details</h2>
+            <form id="orderForm">
+                <div class="form-group row">
+                    <label for="name" class="col-sm-3 col-form-label">Name:</label>
+                    <div class="col-sm-9">
+                        <input asp-for="@Model.Order" type="text" class="form-control" id="name" name="name">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="phone" class="col-sm-3 col-form-label">Phone:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="phone" name="phone">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="address" class="col-sm-3 col-form-label">Address:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="address" name="address">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="city" class="col-sm-3 col-form-label">City:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="city" name="city">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="email" class="col-sm-3 col-form-label">Email:</label>
+                    <div class="col-sm-9">
+                        <input type="email" class="form-control" id="email" name="email">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="orderDate" class="col-sm-3 col-form-label">Order Date:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="orderDate" name="orderDate">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="carrier" class="col-sm-3 col-form-label">Carrier:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="carrier" name="carrier">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="trackingNumber" class="col-sm-3 col-form-label">Tracking Number:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="trackingNumber" name="trackingNumber">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="shippingDate" class="col-sm-3 col-form-label">Shipping Date:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="shippingDate" name="shippingDate">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="sessionId" class="col-sm-3 col-form-label">Session ID:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="sessionId" name="sessionId">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="paymentIntentId" class="col-sm-3 col-form-label">Payment Intent ID:</label>
+                    <div class="col-sm-9">
+                        <input type="text" disabled class="form-control" id="paymentIntentId" name="paymentIntentId">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="paymentDate" class="col-sm-3 col-form-label">Payment Date:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="paymentDate" name="paymentDate">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="paymentStatus" class="col-sm-3 col-form-label">Payment Status:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="paymentStatus" name="paymentStatus">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Update PickUp Details</button>
+            </form>
+        </div>
+
+        <div class="col-md-6">
+            <div class="ml-md-5">
+                <h2 class="mb-4">Order Summary</h2>
+                <div class="order-summary>
+                    <button type="button" class="btn btn-outline-primary mb-3">Order Status - XXXX</button>
+                    <div id="orderSummary">
+                        <p><strong>Title:</strong> <span id="summaryTitle"></span></p>
+                        <p><strong>Price:</strong> <span id="summaryPrice"></span></p>
+                        <p><strong>Quantity:</strong> <span id="summaryQuantity"></span></p>
+                    </div>
+                    <div class="total">
+                        TOTAL
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
