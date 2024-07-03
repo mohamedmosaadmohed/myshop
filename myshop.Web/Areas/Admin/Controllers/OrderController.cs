@@ -12,6 +12,8 @@ namespace myshop.Web.Areas.Admin.Controllers
     public class OrderController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
+        [BindProperty]
+        public OrderVM OrderVM { get; set; }
         public OrderController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
@@ -39,7 +41,7 @@ namespace myshop.Web.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]  
-        public IActionResult UpdateOrderDetails(OrderVM OrderVM)
+        public IActionResult UpdateOrderDetails()
         {
             var orderFromDB = _unitOfWork.OrderHeader.GetFirstorDefault(X => X.Id == OrderVM.orderHeader.Id);
             orderFromDB.FirstName = OrderVM.orderHeader.FirstName;
@@ -62,6 +64,31 @@ namespace myshop.Web.Areas.Admin.Controllers
             _unitOfWork.Complete();
             TempData["Update"] = "Order Has been Updated Successfully";
             return RedirectToAction("Details", "Order", new { orderid = orderFromDB.Id});
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ApproveOrder()
+        {
+            _unitOfWork.OrderHeader.UpdateOrderStatus(OrderVM.orderHeader.Id,SD.Approve,null);
+            _unitOfWork.Complete();
+            TempData["Update"] = "Order Has been Approved Successfully";
+            return RedirectToAction("Details", "Order", new { orderid = OrderVM.orderHeader.Id });
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult StartShipping()
+        {
+            var orderFromDB = _unitOfWork.OrderHeader.GetFirstorDefault(X => X.Id == OrderVM.orderHeader.Id);
+
+            orderFromDB.TrackingNumber = OrderVM.orderHeader.TrackingNumber;
+            orderFromDB.Carrier = OrderVM.orderHeader.Carrier;
+            orderFromDB.orderStatus = SD.Shipped;
+            orderFromDB.shippingDate = DateTime.Now;
+
+            _unitOfWork.OrderHeader.Update(orderFromDB);
+            _unitOfWork.Complete();
+            TempData["Update"] = "Order Has been Start Shipping Successfully";
+            return RedirectToAction("Details", "Order", new { orderid = OrderVM.orderHeader.Id });
         }
     }
 }

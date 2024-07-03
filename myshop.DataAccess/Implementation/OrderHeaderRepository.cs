@@ -21,7 +21,7 @@ namespace myshop.DataAccess.Implementation
 		{
 			_context.TbOrderHeaders.Update(orderHeader);
 		}
-		public void UpdateOrderStatus(int id, string orderStatus, string paymentStatus)
+		public void UpdateOrderStatus(int id, string? orderStatus, string? paymentStatus)
 		{
 			var orderFromDb = _context.TbOrderHeaders.FirstOrDefault(X => X.Id == id);
 			if (orderFromDb != null) 

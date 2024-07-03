@@ -1,140 +1,180 @@
 ﻿@model OrderVM
+@using myshop.Utilities
 @{
     ViewBag.pageTitle = "Order Management";
     ViewBag.CardTitle = "Order Details";
 }
-<div class="container mt-5">
+<div class="container">
     <div class="row">
-        <div class="col-md-6">
-            <h2 class="mb-4">PickUp Details</h2>
-            <form method="post">
-                <input hidden asp-for="orderHeader.Id"/>
-                <div class="form-group row">
-                    <label for="name" class="col-sm-3 col-form-label">First Name:</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" id="firstname" name="orderHeader.FirstName" asp-for="orderHeader.FirstName">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="name" class="col-sm-3 col-form-label">Last Name:</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" id="lastname" name="orderHeader.LastName" asp-for="orderHeader.LastName">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="phone" class="col-sm-3 col-form-label">Phone:</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" id="phone" name="orderHeader.PhoneNumber" asp-for="orderHeader.PhoneNumber">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="phone" class="col-sm-3 col-form-label">Additional PhoneNumber:</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" id="additionalphonenumber" name="orderHeader.AdditionalPhoneNumber" asp-for="orderHeader.AdditionalPhoneNumber">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="address" class="col-sm-3 col-form-label">Address:</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" id="address" name="orderHeader.Address" asp-for="orderHeader.Address">
-                    </div>
-                </div>      
-                <div class="form-group row">
-                    <label for="address" class="col-sm-3 col-form-label">Noties:</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" id="additionalinformation" name="orderHeader.AdditionalInformation" asp-for="orderHeader.AdditionalInformation">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="city" class="col-sm-3 col-form-label">Region:</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" id="region" name="orderHeader.Region" asp-for="orderHeader.Region">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="city" class="col-sm-3 col-form-label">City:</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" id="city" name="orderHeader.City" asp-for="orderHeader.City">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="email" class="col-sm-3 col-form-label">Email:</label>
-                    <div class="col-sm-9">
-                        <input type="email" disabled class="form-control" id="email" name="orderHeader.Email" asp-for="orderHeader.Email">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="orderDate" class="col-sm-3 col-form-label">Order Date:</label>
-                    <div class="col-sm-9">
-                        <input value="@Model.orderHeader.orderDate.ToShortDateString()" type="text" class="form-control" id="orderDate" name="orderDate">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="carrier" class="col-sm-3 col-form-label">Carrier:</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" id="carrier" name="orderHeader.Carrier" asp-for="orderHeader.Carrier">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="trackingNumber" class="col-sm-3 col-form-label">Tracking Number:</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" id="trackingNumber" name="orderHeader.TrackingNumber" asp-for="orderHeader.TrackingNumber">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="shippingDate" class="col-sm-3 col-form-label">Shipping Date:</label>
-                    <div class="col-sm-9">
-                        <input value="@Model.orderHeader.shippingDate.ToShortDateString()" type="text" class="form-control" id="shippingDate" name="shippingDate">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="sessionId" class="col-sm-3 col-form-label">Session ID:</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" id="sessionId" name="orderHeader.sessionId" asp-for="orderHeader.sessionId">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="paymentIntentId" class="col-sm-3 col-form-label">Payment Intent ID:</label>
-                    <div class="col-sm-9">
-                        <input type="text" disabled class="form-control" id="paymentIntentId" name="orderHeader.paymentIntentI" asp-for="orderHeader.paymentIntentId">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="paymentDate" class="col-sm-3 col-form-label">Payment Date:</label>
-                    <div class="col-sm-9">
-                        <input value="@Model.orderHeader.paymentDate.ToShortDateString()" type="text" class="form-control" id="paymentDate" name="paymentDate">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="paymentStatus" class="col-sm-3 col-form-label">Payment Status:</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" id="paymentStatus" name="orderHeader.paymentStatus" asp-for="orderHeader.paymentStatus">
-                    </div>
-                </div>
-                <input type="submit" asp-action="UpdateOrderDetails" class="btn btn-primary btn-block" value="Update PickUp Details">
-
-            </form>
-        </div>
-
-        <div class="col-md-6">
-            <div class="ml-md-5">
-                <h2 class="mb-4">Order Summary</h2>
-                <label class="btn btn-outline-primary form-control mb-4">Order Status - @Model.orderHeader.orderStatus</label>
-                <div class="order-summary">
-                    @foreach(var item in Model.orderDetails)
-                    {
-                        <div id="orderSummary">
-                            <p style="color:#717FE0"><strong>@item.product.Name</strong></p>
-                            <p><strong>Price:</strong> @item.product.Price</p>
-                            <p><strong>Quantity:</strong> @item.Count</p>
+        <form method="post" class="col-md-12">
+            <div class="row">
+                <div class="col-md-6">
+                    <input hidden asp-for="orderHeader.Id" />
+                    <div class="form-group row">
+                        <label for="firstname" class="col-sm-3 col-form-label">First Name:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="firstname" name="orderHeader.FirstName" asp-for="orderHeader.FirstName">
                         </div>
-                        <hr />
-                    }
-                    <div class="total">
-                        <p><strong>Total:</strong> E @Model.orderHeader.totalPrice</p>
+                    </div>
+                    <div class="form-group row">
+                        <label for="lastname" class="col-sm-3 col-form-label">Last Name:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="lastname" name="orderHeader.LastName" asp-for="orderHeader.LastName">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="phone" class="col-sm-3 col-form-label">Phone:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="phone" name="orderHeader.PhoneNumber" asp-for="orderHeader.PhoneNumber">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="additionalphonenumber" class="col-sm-3 col-form-label">Additional PhoneNumber:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="additionalphonenumber" name="orderHeader.AdditionalPhoneNumber" asp-for="orderHeader.AdditionalPhoneNumber">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="address" class="col-sm-3 col-form-label">Address:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="address" name="orderHeader.Address" asp-for="orderHeader.Address">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="additionalinformation" class="col-sm-3 col-form-label">Noties:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="additionalinformation" name="orderHeader.AdditionalInformation" asp-for="orderHeader.AdditionalInformation">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="region" class="col-sm-3 col-form-label">Region:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="region" name="orderHeader.Region" asp-for="orderHeader.Region">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="city" class="col-sm-3 col-form-label">City:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="city" name="orderHeader.City" asp-for="orderHeader.City">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="email" class="col-sm-3 col-form-label">Email:</label>
+                        <div class="col-sm-9">
+                            <input type="email" disabled class="form-control" id="email" name="orderHeader.Email" asp-for="orderHeader.Email">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="orderDate" class="col-sm-3 col-form-label">Order Date:</label>
+                        <div class="col-sm-9">
+                            <input value="@Model.orderHeader.orderDate.ToShortDateString()" disabled type="text" class="form-control" id="orderDate" name="orderDate">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="carrier" class="col-sm-3 col-form-label">Carrier:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="carrier" name="orderHeader.Carrier" asp-for="orderHeader.Carrier">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="trackingNumber" class="col-sm-3 col-form-label">Tracking Number:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="trackingNumber" name="orderHeader.TrackingNumber" asp-for="orderHeader.TrackingNumber">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="shippingDate" class="col-sm-3 col-form-label">Shipping Date:</label>
+                        <div class="col-sm-9">
+                            <input value="@Model.orderHeader.shippingDate.ToShortDateString()" type="text" class="form-control" id="shippingDate" name="shippingDate">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="sessionId" class="col-sm-3 col-form-label">Session ID:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="sessionId" name="orderHeader.sessionId" asp-for="orderHeader.sessionId">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="paymentIntentId" class="col-sm-3 col-form-label">Payment Intent ID:</label>
+                        <div class="col-sm-9">
+                            <input type="text" disabled class="form-control" id="paymentIntentId" name="orderHeader.paymentIntentI" asp-for="orderHeader.paymentIntentId">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="paymentDate" class="col-sm-3 col-form-label">Payment Date:</label>
+                        <div class="col-sm-9">
+                            <input value="@Model.orderHeader.paymentDate.ToShortDateString()" type="text" class="form-control" id="paymentDate" name="paymentDate">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="paymentStatus" class="col-sm-3 col-form-label">Payment Status:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="paymentStatus" name="orderHeader.paymentStatus" asp-for="orderHeader.paymentStatus">
+                        </div>
+                    </div>
+                    <input type="submit" asp-action="UpdateOrderDetails" class="btn btn-primary btn-block" value="Update PickUp Details" />
+                </div>
+                <div class="col-md-6">
+                    <div class="ml-md-5">
+                        <h2 class="mb-4">Order Summary</h2>
+                        <label class="btn btn-outline-primary form-control mb-4">Order Status - @Model.orderHeader.orderStatus</label>
+                        <div class="order-summary">
+                            @foreach (var item in Model.orderDetails)
+                            {
+                                <div id="orderSummary">
+                                    <p style="color:#717FE0"><strong>@item.product.Name</strong></p>
+                                    <p><strong>Price:</strong> @item.product.Price</p>
+                                    <p><strong>Quantity:</strong> @item.Count</p>
+                                </div>
+                                <hr />
+                            }
+                            <div class="total">
+                                <p><strong>Total:</strong> E @Model.orderHeader.totalPrice</p>
+                            </div>
+                            @if (Model.orderHeader.orderStatus == SD.Pending)
+                            {
+                                <input type="submit" class="btn btn-primary m-1" asp-action="ApproveOrder" name="action" value="ApproveOrder" />
+                            }
+                            @if (Model.orderHeader.orderStatus == SD.Approve)
+                            {
+                                <input type="submit" class="btn btn-success m-1" onclick="return CheckData()" asp-action="StartShipping" name="action" value="StartShipping" />
+                            }
+                            @if (Model.orderHeader.orderStatus != SD.Cancelled && Model.orderHeader.orderStatus != SD.Refund)
+                            {
+                                <button type="submit" class="btn btn-danger m-1" name="action" value="CancelOrder">Cancel Order</button>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>
+@section Scripts{
+    <script>
+        function CheckData() {
+            if (document.getElementById("carrier").value == '') {
+                Swal.fire({
+                    title: "There Is An Error",
+                    text: "Please Enter Carrier",
+                    icon: "error",
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                });
+                return false;
+            }
+            if (document.getElementById("trackingNumber").value == '') {
+                Swal.fire({
+                    title: "There Is An Error",
+                    text: "Please Enter Tracking Number",
+                    icon: "error",
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                });
+                return false;
+            }
+            return true;
+        }
+    </script>
+}
+
