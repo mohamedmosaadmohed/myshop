@@ -60,7 +60,7 @@ function DeleteItem(url) {
             });
             Swal.fire({
                 title: "Deleted!",
-                text: "Your product has been deleted.",
+                text: "Your Order has been deleted.",
                 icon: "success"
             });
         }
