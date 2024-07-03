@@ -82,6 +82,7 @@ namespace myshop.Web.Areas.Customer.Controllers
             shoppingCartVM.OrderHeader.Region = shoppingCartVM.OrderHeader.applicationUser.Region;
             shoppingCartVM.OrderHeader.City = shoppingCartVM.OrderHeader.applicationUser.City;
 
+
             foreach (var item in shoppingCartVM.shoppingCarts)
 			{
 				shoppingCartVM.OrderHeader.totalPrice += (item.Count * item.Product.Price);

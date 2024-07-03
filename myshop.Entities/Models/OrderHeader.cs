@@ -28,16 +28,26 @@ namespace myshop.Entities.Models
 		public string? sessionId { get; set; }
 		public string? paymentIntentId { get; set; }
 
-		// Data For User
-		public string FirstName { get; set; }
-		public string LastName { get; set; } 
-		public string Email { get; set; } 
-		public string Address { get; set; } 
-		public string? AdditionalInformation { get; set; }
-		public string Region { get; set; } 
-		public string City { get; set; } 
-		public string PhoneNumber { get; set; } 
-		public string? AdditionalPhoneNumber { get; set; }
+        // Data For User
+        [Required]
+        public string FirstName { get; set; }
+        [Required]
+        public string LastName { get; set; }
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; }
+        [Required]
+        public string Address { get; set; }
+        public string? AdditionalInformation { get; set; }
+        [Required]
+        public string Region { get; set; }
+        [Required]
+        public string City { get; set; }
+        [Required]
+        [Phone]
+        public string PhoneNumber { get; set; }
+        [Phone]
+        public string? AdditionalPhoneNumber { get; set; }
 
-	}
+    }
 }

@@ -44,34 +44,34 @@
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="firstName">First Name</label>
-                                <input type="text" class="form-control" id="firstname" asp-for="@Model.OrderHeader.FirstName">
+                                <input type="text" class="form-control" id="firstname" asp-for="@Model.OrderHeader.FirstName"/>
                             </div>             
                             <div class="col-md-6 mb-3">
                                 <label for="firstName">Last Name</label>
-                                <input type="text" class="form-control" id="lastname" asp-for="@Model.OrderHeader.LastName">
+                                <input type="text" class="form-control" id="lastname" asp-for="@Model.OrderHeader.LastName"/>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="firstName">Phone Number</label>
-                                <input type="tel" class="form-control" id="phonenumber" asp-for="@Model.OrderHeader.PhoneNumber">
+                                <input type="tel" class="form-control" id="phonenumber" asp-for="@Model.OrderHeader.PhoneNumber" required />
                                 <span asp-validation-for="@Model.OrderHeader.PhoneNumber" class="text-danger"></span>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="firstName">Additional PhoneNumber</label>
-                                <input type="tel" class="form-control" id="phonenumber" asp-for="@Model.OrderHeader.AdditionalPhoneNumber">
+                                <input type="tel" class="form-control" id="phonenumber" asp-for="@Model.OrderHeader.AdditionalPhoneNumber"/>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="address">Address</label>
-                                <input type="text" class="form-control" id="address" asp-for="@Model.OrderHeader.Address">
-                                <span asp-validation-for="@Model.OrderHeader.Address" class="text-danger"></span>
+                                <input type="text" class="form-control" id="address" asp-for="@Model.OrderHeader.Address" required />
+                                <span asp-validation-for="OrderHeader.Address" class="text-danger"></span>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="email">Email <span class="text-muted"></span></label>
-                                <input type="email" class="form-control" id="email" asp-for="@Model.OrderHeader.Email">
-                                <span asp-validation-for="@Model.OrderHeader.Email" class="text-danger"></span>
+                                <input type="email" class="form-control" id="email" asp-for="@Model.OrderHeader.Email" />
+                                <span asp-validation-for="OrderHeader.Email" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="row">
@@ -81,18 +81,20 @@
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="region">Region</label>
-                                <select class="form-control" id="region" asp-for="@Model.OrderHeader.Region">
+                                <select class="form-control" id="region" asp-for="@Model.OrderHeader.Region" required>
                                     <option value="">Select Region</option>
                                 </select>
+                                <span asp-validation-for="@Model.OrderHeader.Region" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="city">City</label>
-                                <select class="form-control" id="city" asp-for="@Model.OrderHeader.City">
+                                <select class="form-control" id="city" asp-for="@Model.OrderHeader.City" required>
                                     <option value="">Select City</option>
                                 </select>
                             </div>
+                            <span asp-validation-for="@Model.OrderHeader.City" class="text-danger"></span>
                         </div>
                         <hr class="mb-4">
                         <button class="btn btn-primary btn-lg btn-block mb-4" type="submit">Place Order</button>
@@ -122,9 +124,18 @@
                         regionSelect.appendChild(option);
                     }
 
+                    // Set selected region
+                    regionSelect.value = "@Model.OrderHeader.Region";
+
+                    // Populate cities dropdown based on selected region
+                    populateCities(regionSelect.value, data);
+
                     // Update cities dropdown when region changes
                     regionSelect.addEventListener("change", function () {
-                        const selectedRegion = this.value;
+                        populateCities(this.value, data);
+                    });
+
+                    function populateCities(selectedRegion, data) {
                         citySelect.innerHTML = '<option value="">Select City</option>'; // Reset city dropdown
 
                         const regionData = data.find(r => r.namePrimaryLang === selectedRegion);
@@ -147,12 +158,16 @@
                                     });
                                 }
                             });
+
+                            // Set selected city
+                            citySelect.value = "@Model.OrderHeader.City";
                         }
-                    });
+                    }
                 })
                 .catch(error => console.error('Error fetching JSON:', error));
         });
     </script>
-
 </body>
 </html>
+
+
